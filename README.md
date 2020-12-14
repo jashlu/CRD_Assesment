@@ -10,10 +10,10 @@ Assignment:
 
 
 _________________
-##Design Notes 
+## Design Notes 
 
 
-#VEHICLE DATABASES 
+# VEHICLE DATABASES 
 
  Have three different hashmaps to store inventory of each type of vehicle: 
  Sedan HashMap, SUV HashMap, and Van HashMap 
