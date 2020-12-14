@@ -1,7 +1,5 @@
 # CRD_Assesment
-
 Joshua Lu 
-
 
 Assignment:
 - Design and implement a car rental system using object-oriented principles. 
@@ -10,26 +8,12 @@ Assignment:
 - Use Java as the implementation language. Use unit tests to prove the system satisfies the requirements.
 
 
-<!-- language: lang-none -->
-
-    --------------------------------------------
-    |                colour                    |
-    --------------------------------------------
-    |     colour_id     |     colour           |
-    --------------------------------------------
-    | 1                 |     blue             |
-    --------------------------------------------
-    | 2                 |     red              |
-    --------------------------------------------
-    ############################################
-    --------------------------------------------
-
 
 _________________
-Design Notes 
+##Design Notes 
 
 
-VEHICLE DATABASES 
+#VEHICLE DATABASES 
 
  Have three different hashmaps to store inventory of each type of vehicle: 
  Sedan HashMap, SUV HashMap, and Van HashMap 
