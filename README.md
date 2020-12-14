@@ -66,7 +66,7 @@ Sedan HashMap, SUV HashMap, and Van HashMap
 <!-- language: lang-none -->
     
     Reservation Object
-    	Vehicle Type
+        Vehicle Type
 	Vehicle ID
 	Rental Date
 	Rental Time
