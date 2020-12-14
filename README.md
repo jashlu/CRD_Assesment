@@ -9,40 +9,35 @@ Assignment:
 
 
 
-_________________
-## Design Notes 
+# Design Notes 
 
 
-# VEHICLE DATABASES 
+### VEHICLE DATABASES 
 
- Have three different hashmaps to store inventory of each type of vehicle: 
- Sedan HashMap, SUV HashMap, and Van HashMap 
+- Have three different hashmaps to store inventory of each type of vehicle: 
+Sedan HashMap, SUV HashMap, and Van HashMap 
 
- HashMap key is the count associated with that vehicle  
- HashMap value is the vehicle ID 
+- HashMap key is the count associated with that vehicle  
+- HashMap value is the vehicle ID 
 	
-vehicle IDs
-	se____ = sedan
-	s____  = suv 
-	v____  = van 
+- vehicle IDs:
+se____ = sedan
+s____  = suv 
+v____  = van 
 
- Have variable to keep track of next vehicle up to be rented 
-
+- Have variable to keep track of next vehicle up to be rented
 
 <!-- language: lang-none -->
 
-   Example Sedan Database (HashMap)
-	
-   +++++++++++++++++++
-   | 1 |  se001      |
-   +++++++++++++++++++   
-   | 2 |  se021      |
-   +++++++++++++++++++
-   | 3 |  se301      |
-   +++++++++++++++++++
-   ###################
+    --------------------------------------------
+    |     1    |     se001       |
+    --------------------------------------------
+    |     2    |     se002       |
+    --------------------------------------------
+    |     3    |     se003       |
+    --------------------------------------------
+ 
 
-______________________
 
 RESERVATION DATABSE 
 
