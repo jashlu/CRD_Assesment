@@ -3,6 +3,7 @@ import java.lang.*;
 import java.io.*; 
 
 
+
 //rental system will act as front end
 //all it will do is format requests in correct way 
 //then communicate with vehicle database and reservation database to achieve its requests. 
@@ -39,19 +40,8 @@ public class RentalSystem {
 	//add car to a specific database. 
 	//Decided VehicleDatabse.java will act as "backend" and itll have three "separate"
 	//databases for each type of vehicle 
-	static private void add_car(){
-		System.out.println("\n\nENTER RENTAL CAR INFO:");
-		System.out.println("Input Format: \"Car Type , CarID\""); 
-		System.out.println("Car Types: Sedan, SUV, Van"); 
-
-		Scanner myObj = new Scanner(System.in);  // Create a Scanner object
-		String info = myObj.nextLine();  // Read user input
-		if (info.length() > 0) {
-			//input must follow strict formatting
-			String[] split_info = info.split(" , ");
-			//add vehicle to the database
-			vehicle_db.add_vehicle(split_info[0], split_info[1]);
-		}
+	static private void add_car(String car_type, String car_id){
+		vehicle_db.add_vehicle(car_type, car_id);
 	}
 
 	//display each rental car database
@@ -62,28 +52,16 @@ public class RentalSystem {
 
 	//date and time will be automatically inputted. 
 	// need Reservation ID, Type of Vehicle, num of days 
-	static private void reserve(){
-		System.out.println("\n\nENTER FOLLOWING RESERVATION INFO:");
-		System.out.println("Input Format: \"Type of Vehicle , Number of Days\"");
-		System.out.println("(Ex: \"Sedan , 5\")");
+	static private void reserve(String car_type, int days){
+		//request specific vehicle type from vehicle database
+		String vehicle_id = vehicle_db.use_vehicle(car_type);
 
-		Scanner myObj = new Scanner(System.in);  // Create a Scanner object
-		String info = myObj.nextLine();  // Read user input
-		if (info.length() > 0){
-			String[] split_info = info.split(" , ");
-			//request specific vehicle type from vehicle database
-			String vehicle_id = vehicle_db.use_vehicle(split_info[0]);
-
-			//desired rental vehicle is not available
-			if (vehicle_id.equals("-1")){
-				System.out.println("\n\nNO DESIRED RENTALS AVAILABLE");
-			}
-			else{
-				//make sure input is in correct format
-				String days = split_info[1].replaceAll("\\s+","");
-				//add new reservation to the database
-				reservation_db.add_reservation(split_info[0], Integer.parseInt(days), vehicle_id);
-			} 
+		//desired rental vehicle is not available will return -1
+		if (vehicle_id.equals("-1")){
+			System.out.println("\n\nNO DESIRED RENTALS AVAILABLE");
+		}
+		else{
+			reservation_db.add_reservation(car_type, days, vehicle_id); 
 		} 
 	}
 
@@ -92,20 +70,13 @@ public class RentalSystem {
 		reservation_db.view_reservations();
 	}
 
-	static private void remove(){
-		System.out.println("\n\nENTER RESERVATION ID TO BE REMOVED:");
-		System.out.println("(Input Ex: \"r123\")");
-
-		Scanner myObj = new Scanner(System.in);  // Create a Scanner object
-		String r_id = myObj.nextLine();  // Read user input
-		//if input is valid
-		if (r_id.length() > 0){
-			//remove the reservation from database 
-			Reservation reserved_vehicle = reservation_db.remove_reservation(r_id);
-			//add reserved vehicle back to available rentals
-			if (reserved_vehicle != null){
-				vehicle_db.add_vehicle(reserved_vehicle.vehicle_type(), reserved_vehicle.vehicle_id());
-			}
+	static private void remove(String reservation_id){
+		//we will need to re-add that vehicle back to its appropriate database so it can be rented out again
+		Reservation reserved_vehicle = reservation_db.remove_reservation(reservation_id);
+		
+		//we have a check to make sure this reservation and vehicle exist, if exists add reserved vehicle back to available rentals
+		if (reserved_vehicle != null){
+			vehicle_db.add_vehicle(reserved_vehicle.vehicle_type(), reserved_vehicle.vehicle_id());
 		} 
 	}
 
@@ -113,46 +84,116 @@ public class RentalSystem {
 	//run system will remain active entire time, continually requesting user input 
 	//communicate with correct function to activate its purpose
 
-	static public void run_system(){
-		RentalSystem system = new RentalSystem(); 
+	static public void run_tests(){
+		add_vehicle_test(); 
+		System.out.println("___________________________________________");
+		add_reservation_test();
+		System.out.println("____________________________________________");
+		remove_reservation_test();
+	}
 
-		boolean check = true; 
-		System.out.println("\nWelcome to Joshua Car Rentals\n");
 
-		while (check) {
-			Scanner myObj = new Scanner(System.in);  // Create a Scanner object
-    		//display available actions for user to use
-    		display_actions(); 
-    		String command = myObj.nextLine();  // Read user input
-    		
-    		//all possible commands linked to appropriate communication channel with backend
-    		switch (command){
-    			case "Add Car":
-    				add_car();
-    				break;
-    			case "View Car":
-    				view_car();
-    				break;
-    			case "Reserve":
-    				reserve();
-    				break;
-    			case "View":
-    				view();
-    				break; 
-    			case "Remove": 
-    				remove();
-    				break; 
-    			case "Exit":
-    				check = false;
-    				break; 
-    		}
-    		System.out.println("\n\n");
+	static public void add_vehicle_test(){
+		System.out.println("\nADD VEHICLE TEST");
+		RentalSystem test1 = new RentalSystem(); 
+
+		//add sedan 
+		test1.add_car("Sedan" , "se001");
+		//add suv
+		test1.add_car("SUV" , "s0001");
+		//add van
+		test1.add_car("Van" , "v01");
+
+		//display all rental vehicles
+		System.out.println("Rentals Displayed:");
+		test1.view_car();
+
+		if (test1.vehicle_db.count_check("Sedan") == 1 
+			&& test1.vehicle_db.count_check("SUV") == 1 
+			&& test1.vehicle_db.count_check("Van") == 1){
+			System.out.println("\nAdding Rental Vehicles Feature Successful\n");
+		}
+		else{
+			System.out.println("\nAdding Rental Vehicles Feature Failed\n"); 
 		}
 	}
 
+	static public void add_reservation_test(){
+		System.out.println("\nADD RESERVATION TEST");
+		RentalSystem test2 = new RentalSystem(); 
+
+		//add sedan 
+		test2.add_car("Sedan" , "se001");
+		//add suv
+		test2.add_car("SUV" , "s0001");
+		//add van
+		test2.add_car("Van" , "v01");
+
+		//display all rental vehicles
+		System.out.println("Rentals Displayed:");
+		test2.view_car();
+
+		System.out.println("\nAttempting to Rent SUV for 5 Days.."); 
+		test2.reserve("SUV", 5);
+
+		System.out.println("Reservations Displayed:");
+		test2.view();
+
+
+		if (test2.reservation_db.reservation_count() == 1){
+			System.out.println("\nAdding Reservation Feature Successful\n");
+		}
+		else{
+			System.out.println("\nAdding Reservation Feature Failed\n"); 
+		}
+	}
+
+
+	static public void remove_reservation_test(){
+		System.out.println("\nRemove RESERVATION TEST");
+		RentalSystem test3 = new RentalSystem(); 
+
+		//add sedan 
+		test3.add_car("Sedan" , "se001");
+		test3.add_car("Sedan" , "se002");
+		test3.add_car("Sedan" , "se003");
+		//add suv
+		test3.add_car("SUV" , "s0001");
+		test3.add_car("SUV" , "s0002");
+		//add van
+		test3.add_car("Van" , "v01");
+
+		//display all rental vehicles
+		System.out.println("Rentals Displayed:");
+		test3.view_car();
+
+		test3.reserve("Van", 1);
+		test3.reserve("Sedan", 3);
+		test3.reserve("Sedan", 10);
+		test3.reserve("SUV", 12);
+
+		System.out.println("\nReservations Displayed:");
+		test3.view();
+
+		System.out.println("\nAttempting to remove Van Rental R1");
+		test3.remove("r1");
+
+		test3.view();
+		test3.view_car();
+
+		if (test3.reservation_db.reservation_count() == 3 && test3.vehicle_db.count_check("Van") == 1 ){
+			System.out.println("\nRemoving Reservation Feature Successful and Vehicle Database Updated Correctly\n");
+		}
+		else{
+			System.out.println("\nRemoving Reservation Feature Failed\n"); 
+		}
+	}
+
+
 	 public static void main(String[] args) {
-	 	run_system(); 
-	  }
+	 	run_tests(); 
+	 }
+	  
 }
 
 

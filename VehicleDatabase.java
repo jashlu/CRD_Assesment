@@ -39,6 +39,7 @@ class VehicleDatabase
 	}
 
 	public void add_vehicle(String type, String id){
+		//we add vehicle into its appropriate db
 		switch (type){
 			case "Sedan":
 				sedan_count++; 
@@ -58,6 +59,7 @@ class VehicleDatabase
 	}
 
 	public void view_vehicles(){
+		//simple formatted display of all rental vehicles, organized by the vehicle type
 		System.out.println("\n Sedan Rentals"); 
 		for (Integer sedan_id: sedan_db.keySet()){
 			System.out.println(" " + sedan_id + ": " + sedan_db.get(sedan_id));
@@ -78,6 +80,7 @@ class VehicleDatabase
 	//use vehicle for a reservation, based on requested type
 	//it will return the vehicle's id, also acts as indicator 
 	//to show if that type of vehicle is available for rental, -1 means no available atm
+	//also update count of each vehicle database.
 	public String use_vehicle(String type){
 			String v_id = "-1";
 			switch (type){
@@ -108,6 +111,7 @@ class VehicleDatabase
 			return v_id; 
 		}
 
+	//return count of specific vehicle database
 	public int count_check(String type){
 		int v_count = 0; 
 		switch (type){
