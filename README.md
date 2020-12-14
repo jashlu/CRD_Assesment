@@ -32,15 +32,17 @@ vehicle IDs
  Have variable to keep track of next vehicle up to be rented 
 
 
-#   Example Sedan Database (HashMap)
+<!-- language: lang-none -->
+
+   Example Sedan Database (HashMap)
 	
-#   +++++++++++++++++++
-#   | 1 |  se001      |
-#   +++++++++++++++++++   
-#   | 2 |  se021      |
-#   +++++++++++++++++++
-#   | 3 |  se301      |
-#   +++++++++++++++++++
+   +++++++++++++++++++
+   | 1 |  se001      |
+   +++++++++++++++++++   
+   | 2 |  se021      |
+   +++++++++++++++++++
+   | 3 |  se301      |
+   +++++++++++++++++++
 
 ______________________
 
