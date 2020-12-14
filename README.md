@@ -12,7 +12,7 @@ Assignment:
 
 
 
-
+_________________
 Design Notes 
 
 
@@ -24,23 +24,23 @@ VEHICLE DATABASES
  HashMap key is the count associated with that vehicle  
  HashMap value is the vehicle ID 
 	
-	#vehicle IDs
-	#se____ = sedan
-	#s____  = suv 
-	#v____  = van 
+vehicle IDs
+	se____ = sedan
+	s____  = suv 
+	v____  = van 
 
  Have variable to keep track of next vehicle up to be rented 
 
-   Example Sedan Database (HashMap)
+
+#   Example Sedan Database (HashMap)
 	
-	Next Vehicle Up = 5 
-   +++++++++++++++++++
-   | 1 |  se001      |
-   +++++++++++++++++++   
-   | 2 |  se021      |
-   +++++++++++++++++++
-   | 3 |  se301      |
-   +++++++++++++++++++
+#   +++++++++++++++++++
+#   | 1 |  se001      |
+#   +++++++++++++++++++   
+#   | 2 |  se021      |
+#   +++++++++++++++++++
+#   | 3 |  se301      |
+#   +++++++++++++++++++
 
 ______________________
 
