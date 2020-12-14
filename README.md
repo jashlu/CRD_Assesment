@@ -8,6 +8,12 @@ Assignment:
 - Use Java as the implementation language. 
 
 
+# Design Choices and Notes
+- Given the simplicity of the project, the system has minimal mechanisms to make sure inputted data is in correct fashion. I have listed underneath what some input styles should be such as the vehicle ID's for the rentals. 
+- For sake of time, I decided to use HashMaps to easily act as the database to store vehicles and reservations. I worked on the assuption that the user knows the rental Vehicle IDs, while reservation IDs are automatically generated. 
+- To address "number of cars of each type is limited", I give the user the ability to add in vehicles to our database, hence deciding the inventory and decide what reservation can be made.
+- I did design a mechanism to make sure that only approrpriate reservations using vehicles that exist in our rental system can be created. 
+
 
 
 # INSTRUCTIONS TO RUN RENTALSYSTEM.JAVA 
@@ -21,9 +27,7 @@ This is to help user have better understanding of ongoing test)
 
 
 
-
-
-# Design Notes 
+# Notes 
 
 
 ### VEHICLE DATABASES 
@@ -31,7 +35,7 @@ This is to help user have better understanding of ongoing test)
 - Have three different hashmaps to store inventory of each type of vehicle: 
 Sedan HashMap, SUV HashMap, and Van HashMap 
 
-- HashMap key is the count associated with that vehicle  
+- HashMap key is the count associated with that vehicle, will automatically be generated
 - HashMap value is the vehicle ID
 - Have variable to keep track of next vehicle up to be rented
 
@@ -58,8 +62,8 @@ Sedan HashMap, SUV HashMap, and Van HashMap
 
 - Have 1 hashamp to store each reservation Object 
 
-- HashMap key = Reservation ID 
-- HashMap value = Reservation Object
+- HashMap key = Reservation ID, will be automatically generated
+- HashMap value = Reservation Object, will be created beforehand using information received.
 
 
 <!-- language: lang-none -->
@@ -67,11 +71,11 @@ Sedan HashMap, SUV HashMap, and Van HashMap
 	
     Example Reservation Database (HashMap)
     -------------------------------------
-    |   r001   |   Reservation Obj 001  |
+    |   r1   |   Reservation Obj 001  |
     -------------------------------------
-    |   roo2   |   Reservation Obj 002  |
+    |   r2   |   Reservation Obj 002  |
     -------------------------------------
-    |   roo3   |   Reservation Obj 003  |
+    |   r3   |   Reservation Obj 003  |
     -------------------------------------
 
 
