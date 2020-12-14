@@ -18,59 +18,56 @@ Assignment:
 Sedan HashMap, SUV HashMap, and Van HashMap 
 
 - HashMap key is the count associated with that vehicle  
-- HashMap value is the vehicle ID 
-	
-- vehicle IDs:
-se____ = sedan
-s____  = suv 
-v____  = van 
-
+- HashMap value is the vehicle ID
 - Have variable to keep track of next vehicle up to be rented
 
 <!-- language: lang-none -->
+    
+    Vehicle IDs:
+    sedan = "se____" 
+    suv = "s____"
+    van = "v____"
 
-    --------------------------------------------
+    Sample Sedan Database 
+    Sedan_Count = 3
+    ------------------------------
     |     1    |     se001       |
-    --------------------------------------------
+    ------------------------------
     |     2    |     se002       |
-    --------------------------------------------
+    ------------------------------
     |     3    |     se003       |
-    --------------------------------------------
+    ------------------------------
  
 
 
-RESERVATION DATABSE 
+### RESERVATION DATABSE 
 
- Have 1 hashamp to store each reservation Object 
+- Have 1 hashamp to store each reservation Object 
 
- HashMap key = Reservation ID 
- HashMap value = Reservation Object
-
-
-   Reservation Object
-	 Vehicle Type 
-	 Vehicle ID 
-	 desired date
-	 desired time (24hr time format)
-	 reservation length (days)
+- HashMap key = Reservation ID 
+- HashMap value = Reservation Object
 
 
-   Example Reservation Database (HashMap)
+<!-- language: lang-none -->
+
 	
-   ++++++++++++++++++++++++++++++
-   | r001 | Reservation Obj001  | 
-   ++++++++++++++++++++++++++++++  
-   | r002 | Reservation Obj002  |  
-   ++++++++++++++++++++++++++++++
-   | r003 | Reservation Obj003  |
-   ++++++++++++++++++++++++++++++
-__________________
+    Example Reservation Database (HashMap)
+    -------------------------------------
+    |   r001   |   Reservation Obj 001  |
+    -------------------------------------
+    |   roo2   |   Reservation Obj 002  |
+    -------------------------------------
+    |   roo3   |   Reservation Obj 003  |
+    -------------------------------------
 
-RESERVATION OBJECT 
 
- 	Reservation Obj003
-	 v_type = 'sedan'
-	 v_id = 'se001'
-     r_date = '1/1/2021'
-	 r_time = '13:04'
-	 r_length = 8
+### RESERVATION OBJECT 
+
+<!-- language: lang-none -->
+    
+    Reservation Object
+    	Vehicle Type
+	Vehicle ID
+	Rental Date
+	Rental Time
+	Reservation Length (in days)
