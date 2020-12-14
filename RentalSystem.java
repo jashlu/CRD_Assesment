@@ -90,6 +90,10 @@ public class RentalSystem {
 		add_reservation_test();
 		System.out.println("____________________________________________");
 		remove_reservation_test();
+		System.out.println("____________________________________________");
+		add_incorrect_reservation();
+		System.out.println("\n\nEND OF TESTING");
+
 	}
 
 
@@ -187,6 +191,18 @@ public class RentalSystem {
 		else{
 			System.out.println("\nRemoving Reservation Feature Failed\n"); 
 		}
+	}
+
+	static public void add_incorrect_reservation(){
+		System.out.println("\nADD INCORRECT RESERVATION TEST");
+		RentalSystem test4 = new RentalSystem(); 
+
+		//add no vehicles, so databases are empty
+		System.out.println("\nRentals Displayed:");
+		test4.view_car();
+
+		System.out.println("\nAttempting to make incorrect reservation..");
+		test4.reserve("SUV", 1);
 	}
 
 

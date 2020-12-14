@@ -14,6 +14,7 @@ Assignment:
 - After downloading Zip File or from Github, extract all files
 - Run "javac RentalSystem.java" to compile files
 - Run "java RentalSystem" to run the RentalSystem application and simulate the unit tests prepared for viewing.
+- RentalSystem will run 4 basic tests that demonstrate the RentalSystem's ability to 1. Add Rental Vehicle (All Three Types) 2. Add Reservation 3. Remove Reservation 4. Try To Add Incorrect Reservation
 
 (Each test is accompanied by tables that show the respective vehicle databases and reservation database at a certain moment during testing
 This is to help user have better understanding of ongoing test)
